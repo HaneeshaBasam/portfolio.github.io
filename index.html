@@ -15,6 +15,36 @@
             --light: #f8f9fa;
         }
         
+        .main-nav {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+  
+        .nav-item {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #cfe7ff;
+            font-weight: 600;
+            border: 2px solid #4776E6;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+  
+        .nav-item:hover {
+            background: #4776E6;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+  
+        .nav-item:active {
+            transform: translateY(0);
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -177,27 +207,22 @@
         
         .social-links {
             display: flex;
+            gap: 15px;
+            padding: 15px;
             justify-content: center;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-        
-        .social-link {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-        
-        .social-link:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
+         }
+  
+        .social-item {
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                transition: all 0.3s ease;
+                border: 2px solid;
+            }
 
         .achievements-grid {
             display: grid;
@@ -259,14 +284,14 @@
     <div class="container">
         <header>
             <div class="logo">HB</div>
-            <nav>
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#achievements">Achievements</a>
-                <a href="#contact">Contact</a>
-            </nav>
+            <nav class="main-nav">
+                <a href="#about" class="nav-item">About</a>
+                <a href="#experience" class="nav-item">Experience</a>
+                <a href="#projects" class="nav-item">Projects</a>
+                <a href="#skills" class="nav-item">Skills</a>
+                <a href="#achievements" class="nav-item">Achievements</a>
+                <a href="#contact" class="nav-item">Contact</a>
+              </nav>
         </header>
         
         <section class="hero">
@@ -460,10 +485,10 @@
                 <a href="mailto:haneesha2004@gmail.com" class="social-item">
                   <i class="fas fa-envelope"></i> Email
                 </a>
-                <a href="https://github.com/HaneshaBasam" class="social-item">
+                <a href="https://github.com/HaneeshaBasam" class="social-item">
                   <i class="fab fa-github"></i> Github
                 </a>
-                <a href="https://www.linkedin.com/in/hanesha-basam-a924a1287/" class="social-item">
+                <a href="https://www.linkedin.com/in/haneesha-basam-a924a1287" class="social-item">
                   <i class="fab fa-linkedin"></i> Linkedin
                 </a>
               </div>
