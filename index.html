@@ -1,223 +1,649 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Hanesha Basam | AI/ML Engineer</title>
+    <style>
+        :root {
+            --primary: #6e48aa;
+            --secondary: #9d50bb;
+            --accent: #4776E6;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        #neural-network {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .node {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        
+        .node:hover {
+            transform: scale(1.5);
+            background: var(--primary);
+        }
+        
+        .node-info {
+            position: absolute;
+            background: rgba(30,30,46,0.95);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 1rem;
+            width: 300px;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline-item {
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            background: rgba(30,30,46,0.7);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .skill-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(110,72,170,0.2);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        
+        .skill-tag:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <link rel="stylesheet" href="style.css">
-
-  <title>Portfolio</title>
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .achievement-card {
+            background: rgba(30,30,46,0.7);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary);
+            transition: all 0.3s;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .achievement-year {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .experience-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+        
+        .experience-tab {
+            padding: 0.5rem 1.5rem;
+            background: rgba(30,30,46,0.7);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .experience-tab.active {
+            background: var(--primary);
+        }
+        
+        .experience-content {
+            display: none;
+        }
+        
+        .experience-content.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <nav>
-    <div class="left">
-      <a href="/">Haneesha Basam</a>
-    </div>
-
-    <div class="right">
-      <a href="https://github.com/HaneeshaBasam" target="_blank" rel="noopener noreferrer">
-        <i class="fa-brands fa-github"></i>
-        <span>Github</span>
-      </a>
-      
-      <a href="https://www.linkedin.com/in/haneesha-basam-a924a1287" target="_blank" rel="noopener noreferrer">
-        <i class="fa-brands fa-linkedin"></i>
-        <span>Linkedin</span>
-      </a>
-      
-      <a href="mailto:haneesha2004@gmail.com">
-        <i class="fa-solid fa-envelope"></i>
-        <span>Email</span>
-      </a>
-    </div>
-  </nav>
-
-  <main>
-    <!-- SECTION 1: Hero -->
-    <section class="hero-section">
-      <div class="text">
-        <h2>Hi, I'm Haneesha Basam 👋</h2>
-        <p>I am a third-year undergraduate student deeply immersed in the realms of Artificial Intelligence and Machine Learning. Proficient in Python and adept in databases, AI, and ML technologies, I thrive on solving intricate challenges. With a proactive approach and a passion for innovation, I am committed to making meaningful contributions in the tech-driven world.</p>
-
-        <div class="links">
-          <a href="#projects">
-            <i class="fa-solid fa-diagram-project"></i>
-            <span>Projects</span>
-          </a>
-          
-          <a href="#experience">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <span>Experience</span>
-          </a>
-
-          <a href="#skills">
-            <i class="fa-solid fa-code"></i>
-            <span>Skills</span>
-          </a>
-
-          <a href="#contact">
-            <i class="fa-solid fa-envelope"></i>
-            <span>Contact</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="headshot">
-        <img src="images/hero-headshot.jpg" alt="haneesha headshot">
-      </div>
-    </section>
+    <canvas id="neural-network"></canvas>
     
-    <!-- SECTION 2: Projects-->
-    <section id="projects" class="projects-section">
-      <h2>Projects</h2>
-
-      <div class="group">
-        <div class="person-details">
-          <img src="images/django3.png">
-        </div>
-
-        <div class="text">
-          <h3>Blogger website</h3>
-          <p>A dynamic web application built with Django, allowing users to create, publish, and manage blog posts. Features include user authentication, a rich text editor for writing posts, comment sections, and responsive design for optimal viewing on various devices.</p>
-            <p>Technologies used: Python, Django, HTML, CSS, SQLite.<br></p>
-            <a href="https://github.com/HaneeshaBasam/Django-Blogger"><span>Project Link</span></a>
-        </div>
-      </div>
-
-    <div class="group">
-      <div class="person-details">
-        <img src="images/project.jpg">
-      </div>
-
-      <div class="text">
-        <h3>Multifunctional Robotic vehicle</h3>
-        As part of VelTech's curriculum, I led a team that worked on the project "Multifunctional Robotic Vehicle using Arduino with Voice and Bluetooth Control." Our team designed an obstacle avoidance robotic vehicle capable of voice and Bluetooth control.<br>Accuracy: 87%<br>Grade: S<br>
-      </div>
-    </div>
-  </section>
-
-   <!-- SECTION 3: Experience -->
-   <section id="experience" class="experience-section">
-    <h2>Experience</h2>
-    <div class="ecells">
-      <div class="ecell">
-        <div class="text">
-          <h3>AI Intern at Infosys Springboard</h3>
-          <p>May, 2024 - July 2024<br>Project title: Data Query and Visualization using LLM<br>Position: Team Leader<br>Duration: 8-weeks<br>Mode: Online</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-    <!-- SECTION 4: Skills -->
-    <section id="skills" class="skills-section">
-      <h2>Skills</h2>
-
-      <div class="text">
-        I bring a versatile skill set that includes both technical expertise and strong non-technical abilities. I excel in various aspects of my field. Alongside my academic pursuits, I thrive in leadership, communication, and collaborative roles, aiming to make a holistic impact.
-      </div>
-
-      <div class="cells">
-        <div class="cell">
-          <img src="images/html-logo.webp" alt="html logo">
-          <span>HTML</span>
-        </div>
+    <div class="container">
+        <header>
+            <div class="logo">HB</div>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
         
-        <div class="cell">
-          <img src="images/css-logo.webp" alt="css logo">
-          <span>CSS</span>
-        </div>
-        
-        <div class="cell">
-          <img src="images/Python-logo.png" alt="python logo">
-          <span>Python</span>
-        </div>
-        
-        <div class="cell">
-          <img src="images/sql-logo.png" alt="MySQL logo">
-          <span>MySQL</span>
-        </div>
-        
-        <div class="cell">
-          <img src="images/java-Logo.png" alt="java logo">
-          <span>Java</span>
-        </div>
-
-        <div class="cell">
-          <img src="images/c-logo.png" alt="c logo">
-          <span>C</span>
-        </div>
-
-        <div class="cell">
-          <img src="images/django-logo.png" alt="django logo">
-          <span>Django</span>
-        </div>
-
-        <div class="cell">
-          <img src="images/scratch-logo.png" alt="scratch logo">
-          <span>Scratch</span>
-        </div>
-      </div>
-    </section>
-
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Contact Section</title>
-        <link rel="stylesheet" href="styles.css">
-        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-        <script>
-            (function(){
-                emailjs.init("O_Q8LF2a2rTTyP06w"); // Replace with your EmailJS user ID
-            })();
-    
-            function sendEmail(event) {
-                event.preventDefault();
-    
-                emailjs.sendForm('service_to7z8nf', 'template_qhxp4xr', event.target)
-                    .then(function() {
-                        alert('Message sent successfully!');
-                    }, function(error) {
-                        alert('Failed to send the message. Error: ' + JSON.stringify(error));
-                    });
-            }
-        </script>
-    </head>
-    <body>
-        <!-- SECTION 5: Contact -->
-        <section id="contact" class="contact-section">
-            <h2>Contact</h2>
-    
-            <div class="group">
-                <div class="text">
-                    I would love to hear from you!<br> Whether you have a question about my projects, want to collaborate on an exciting new venture, have an opportunity for me, or just want to say hello, feel free to reach out. You can contact me via email by sending a message or connect with me on LinkedIn. I look forward to connecting and discussing how we can create something amazing together. Thank you for visiting my portfolio!
+        <section class="hero">
+            <h1>Hanesha Basam</h1>
+            <p>AI/ML Engineer | Tech Leader | Innovator</p>
+            <a href="#contact" class="cta-button">Connect With Me</a>
+            
+            <!-- Interactive nodes -->
+            <div class="node" style="top: 30%; left: 20%;" data-info="ai-engineer">
+                <div class="node-info" id="ai-engineer">
+                    <h3>AI/ML Specialist</h3>
+                    <p>With a 9.0 CGPA in B.Tech AI/ML and Infosys AI internship experience, I build intelligent systems that solve real problems.</p>
                 </div>
-    
-                <form onsubmit="sendEmail(event)">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="from_name">
-    
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="from_email">
-    
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" cols="30" rows="10"></textarea>
-    
-                    <button type="submit">Send Message</button>
-                </form>
+            </div>
+            
+            <div class="node" style="top: 50%; left: 80%;" data-info="leader">
+                <div class="node-info" id="leader">
+                    <h3>Proven Leader</h3>
+                    <p>IEEE Volunteer, Student Ambassador, and Head Girl with demonstrated leadership in tech communities and student organizations.</p>
+                </div>
+            </div>
+            
+            <div class="node" style="top: 70%; left: 40%;" data-info="innovator">
+                <div class="node-info" id="innovator">
+                    <h3>Innovator</h3>
+                    <p>Winner of multiple competitions including Raptee HV Design Gamification and Veltech Protiyogita Idea Competition.</p>
+                </div>
             </div>
         </section>
-    </body>
-    </section>
+        
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Education</h3>
+                    <p><strong>B.Tech in AI/ML</strong> | Vel Tech University | CGPA: 9.0</p>
+                    <p><strong>Class 12</strong> | Bhadrachalam Public School | CGPA: 8.8</p>
+                    <p><strong>Class 10</strong> | Bhadrachalam Public School | CGPA: 9.2</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Mission</h3>
+                    <p>To leverage artificial intelligence for creating accessible technology solutions that bridge communication gaps and enhance data-driven decision making.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="experience">
+            <h2 class="section-title">Experience & Leadership</h2>
+            
+            <div class="experience-tabs">
+                <div class="experience-tab active" data-tab="professional">Professional</div>
+                <div class="experience-tab" data-tab="leadership">Leadership</div>
+                <div class="experience-tab" data-tab="volunteer">Volunteer</div>
+            </div>
+            
+            <div class="experience-content active" id="professional-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Infosys Springboard AI Intern</h3>
+                        <p>May 2024 - July 2024</p>
+                        <ul>
+                            <li>Developed LLM-powered data query and visualization tool improving accessibility by 40%</li>
+                            <li>Coordinated team of 13 with 95% on-time task completion</li>
+                            <li>Reduced data retrieval time by 50% with natural language interface</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="experience-content" id="leadership-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Student Ambassador</h3>
+                        <p>International Relations Office, Veltech University</p>
+                        <ul>
+                            <li>Administered student outreach initiatives for 100+ global opportunities</li>
+                            <li>Boosted participation from diverse disciplines by 50%</li>
+                            <li>Guided students through application processes for international programs</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Head Girl</h3>
+                        <p>Bhadrachalam Public School & Jr. College</p>
+                        <ul>
+                            <li>Led student council and represented student body to administration</li>
+                            <li>Organized school events and activities for 500+ students</li>
+                            <li>Received Best Cabinet Member Award for exemplary leadership</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="experience-content" id="volunteer-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>IEEE Volunteer</h3>
+                        <p>Veltech University</p>
+                        <ul>
+                            <li>Spearheaded 36-hour hackathon with 142 participants</li>
+                            <li>Increased female participation in engineering events by 25%</li>
+                            <li>Managed logistics for 200+ participant events</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Umat Bharat Abhiyan</h3>
+                        <p>Veltech University</p>
+                        <ul>
+                            <li>Initiated community engagement in 5 surrounding villages</li>
+                            <li>Led rallies with 150+ participants</li>
+                            <li>Contributed to 15+ club events fostering community relationships</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Sign Language Interface</h3>
+                    <p>Accessibility tool for disabled communication</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>LLM Data Query & Visualization</h3>
+                    <p>Natural language to interactive dashboards</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Healthcare Chatbot</h3>
+                    <p>AI-powered medical assistance</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="skill-cloud">
+                <div class="skill-tag">Python</div>
+                <div class="skill-tag">Machine Learning</div>
+                <div class="skill-tag">Java</div>
+                <div class="skill-tag">C</div>
+                <div class="skill-tag">Django</div>
+                <div class="skill-tag">MySQL</div>
+                <div class="skill-tag">HTML/CSS</div>
+                <div class="skill-tag">Data Structures</div>
+                <div class="skill-tag">AI Techniques</div>
+                <div class="skill-tag">Leadership</div>
+                <div class="skill-tag">Public Speaking</div>
+            </div>
+        </section>
 
-  </main>
+        <section id="achievements">
+            <h2 class="section-title">Achievements & Awards</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <h3>Raptee HV and ARAI-AMTIF Student Outreach Program</h3>
+                    <p class="achievement-year">2024</p>
+                    <p>Winner in Design and Gamification category</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Veltech Protiyogita Idea Competition</h3>
+                    <p class="achievement-year">2024</p>
+                    <p>Winner for innovative tech solution</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Veltech Chatterbox Challenge</h3>
+                    <p class="achievement-year">2024</p>
+                    <p>2nd Place in Group Discussion competition</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Veltech Xtreme</h3>
+                    <p class="achievement-year">2023</p>
+                    <p>2nd Place in Public Speaking Contest</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>BPS Best All-Rounder Award</h3>
+                    <p class="achievement-year">2019, 2021</p>
+                    <p>Recognized for excellence in academics and extracurriculars</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Athletics Achievements</h3>
+                    <p class="achievement-year">2019-2021</p>
+                    <p>Multiple awards in school, interschool, and state-level competitions</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="social-links">
+                <a href="mailto:haneesha2004@gmail.com" class="social-item">
+                  <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="https://github.com/HaneshaBasam" class="social-item">
+                  <i class="fab fa-github"></i> Github
+                </a>
+                <a href="https://www.linkedin.com/in/hanesha-basam-a924a1287/" class="social-item">
+                  <i class="fab fa-linkedin"></i> Linkedin
+                </a>
+              </div>
+        </section>
+        
+        <footer>
+            <p>© 2024 Hanesha Basam | AI Innovator</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Neural network animation
+        const canvas = document.getElementById('neural-network');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        class Node {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.connections = [];
+                this.radius = 2;
+                this.pulse = 0;
+                this.pulseSpeed = Math.random() * 0.02 + 0.01;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius + this.pulse, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(110, 72, 170, ${0.5 + this.pulse/2})`;
+                ctx.fill();
+                
+                this.pulse += this.pulseSpeed;
+                if (this.pulse > 3 || this.pulse < 0) {
+                    this.pulseSpeed = -this.pulseSpeed;
+                }
+            }
+        }
+        
+        class Connection {
+            constructor(node1, node2) {
+                this.node1 = node1;
+                this.node2 = node2;
+                this.active = false;
+                this.progress = 0;
+                this.speed = Math.random() * 0.02 + 0.01;
+            }
+            
+            draw() {
+                if (this.active) {
+                    this.progress += this.speed;
+                    if (this.progress >= 1) {
+                        this.progress = 0;
+                        this.active = false;
+                    }
+                    
+                    const x = this.node1.x + (this.node2.x - this.node1.x) * this.progress;
+                    const y = this.node1.y + (this.node2.y - this.node1.y) * this.progress;
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(this.node1.x, this.node1.y);
+                    ctx.lineTo(x, y);
+                    ctx.strokeStyle = 'rgba(110, 72, 170, 0.3)';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, 1, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(110, 72, 170, 0.8)';
+                    ctx.fill();
+                } else {
+                    if (Math.random() < 0.002) {
+                        this.active = true;
+                    }
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(this.node1.x, this.node1.y);
+                    ctx.lineTo(this.node2.x, this.node2.y);
+                    ctx.strokeStyle = 'rgba(110, 72, 170, 0.1)';
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        const nodes = [];
+        const connections = [];
+        
+        // Create nodes
+        for (let i = 0; i < 30; i++) {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            nodes.push(new Node(x, y));
+        }
+        
+        // Create connections
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                if (Math.random() < 0.2) {
+                    connections.push(new Connection(nodes[i], nodes[j]));
+                    nodes[i].connections.push(nodes[j]);
+                    nodes[j].connections.push(nodes[i]);
+                }
+            }
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw connections first
+            connections.forEach(conn => conn.draw());
+            
+            // Then draw nodes
+            nodes.forEach(node => node.draw());
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Interactive node info display
+        document.querySelectorAll('.node').forEach(node => {
+            node.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const infoId = node.getAttribute('data-info');
+                const infoBox = document.getElementById(infoId);
+                
+                // Hide all other info boxes
+                document.querySelectorAll('.node-info').forEach(box => {
+                    if (box.id !== infoId) box.style.display = 'none';
+                });
+                
+                // Toggle current info box
+                if (infoBox.style.display === 'block') {
+                    infoBox.style.display = 'none';
+                } else {
+                    infoBox.style.display = 'block';
+                    // Position near the node
+                    const rect = node.getBoundingClientRect();
+                    infoBox.style.left = `${rect.left + 30}px`;
+                    infoBox.style.top = `${rect.top}px`;
+                }
+            });
+        });
+
+        document.querySelectorAll('.experience-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                document.querySelectorAll('.experience-tab').forEach(t => {
+                    t.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Hide all content
+                document.querySelectorAll('.experience-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.add('active');
+            });
+        });
+
+        // Close info boxes when clicking elsewhere
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.node-info').forEach(box => {
+                box.style.display = 'none';
+            });
+        });
+    </script>
 </body>
 </html>
